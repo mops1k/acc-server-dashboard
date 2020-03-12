@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}ACC Server remote dashboard{% endblock %}</title>
+    {% block stylesheets %}
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Gothic+A1" rel="stylesheet">
+        <link href="{{ asset('assets/css/theme.css') }}" rel="stylesheet" type="text/css" media="all"/>
+    {% endblock %}
+</head>
+<body>
+{% block body %}{% endblock %}
+{% block javascripts %}
+    <!-- Required vendor scripts (Do not remove) -->
+    <script type="text/javascript" src="{{ asset('assets/js/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/popper.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/bootstrap.js') }}"></script>
+
+    <!-- Optional Vendor Scripts (Remove the plugin script here and comment initializer script out of index.js if site does not use that feature) -->
+    <script type="text/javascript" src="{{ asset('assets/js/autosize.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/flatpickr.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/prism.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/draggable.bundle.legacy.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/swap-animation.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/dropzone.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/list.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/theme.js') }}"></script>
+{% endblock %}
+</body>
+</html>
+
