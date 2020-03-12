@@ -23,7 +23,7 @@ class FtpServer
     private $title;
 
     /**
-     * @ORM\Column(type="integer", length=255)
+     * @ORM\Column(type="integer", length=255, nullable=true)
      * @Assert\Ip(normalizer="long2ip")
      */
     private $ip;
@@ -47,6 +47,11 @@ class FtpServer
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $path;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $host;
 
     public function getId(): ?int
     {
@@ -121,6 +126,18 @@ class FtpServer
     public function setPath(?string $path): self
     {
         $this->path = $path;
+
+        return $this;
+    }
+
+    public function getHost(): ?string
+    {
+        return $this->host;
+    }
+
+    public function setHost(?string $host): self
+    {
+        $this->host = $host;
 
         return $this;
     }
