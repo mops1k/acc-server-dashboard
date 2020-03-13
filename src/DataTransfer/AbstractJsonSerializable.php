@@ -41,7 +41,9 @@ class AbstractJsonSerializable implements \JsonSerializable
 
         foreach ($reflectionClass->getProperties(\ReflectionProperty::IS_PROTECTED) as $property) {
             $name          = $property->getName();
-            $result[$name] = $this->{$name};
+            if (null !== $this->{$name}) {
+                $result[$name] = $this->{$name};
+            }
         }
 
         return $result;
