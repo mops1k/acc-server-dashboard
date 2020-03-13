@@ -31,7 +31,7 @@
                 <td>{{ server.title }}</td>
                 <td>{{ server.ip }}</td>
                 <td>{{ server.port }}</td>
-                <td><a href="#" class="btn btn-danger btn-sm float-right">DELETE</a></td>
+                <td><a href="{{ path('ftp_server_delete', {'id': server.id}) }}" class="btn btn-danger btn-sm float-right">DELETE</a></td>
             </tr>
         {% endfor %}
         </tbody>

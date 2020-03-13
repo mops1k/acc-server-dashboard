@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+//use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class FtpServerController extends AbstractController
 {
@@ -49,5 +50,20 @@ class FtpServerController extends AbstractController
             'form' => $form->createView(),
             'breadcrumb' => 'Add new ftp server'
         ]);
+    }
+
+    /**
+     * @Route("/ftp/server/{id}/delete", name="ftp_server_delete")
+     *
+     * @param FtpServer $ftpServer
+     *
+     * @return Response
+     */
+    public function delete(FtpServer $ftpServer): Response
+    {
+        $this->getDoctrine()->getManager()->remove($ftpServer);
+        $this->getDoctrine()->getManager()->flush();
+
+        return $this->redirectToRoute('ftp_server_list');
     }
 }

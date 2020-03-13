@@ -10,6 +10,7 @@
         "doctrine/doctrine-fixtures-bundle": "^3.3",
         "gaufrette/ftp-adapter": "^0.4.0",
         "knplabs/gaufrette": "^0.9.0",
+        "sensio/framework-extra-bundle": "^5.5",
         "symfony/asset": "5.0.*",
         "symfony/console": "5.0.*",
         "symfony/dotenv": "5.0.*",
