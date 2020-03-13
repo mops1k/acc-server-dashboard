@@ -39,6 +39,7 @@
                 </td>
                 <td>
                     <div class="btn-group btn-group-sm float-right" role="group" aria-label="Controls">
+                        <a href="{{ path('ftp_server_cache_files', {'id': server.id}) }}" class="btn btn-secondary btn-sm">CACHE FILES</a>
                         <a href="{{ path('ftp_server_edit', {'id': server.id}) }}" class="btn btn-primary btn-sm">EDIT</a>
                         <a data-title="Deleting ftp server" href="{{ path('ftp_server_delete', {'id': server.id}) }}" class="delete btn btn-danger btn-sm">DELETE</a>
                     </div>

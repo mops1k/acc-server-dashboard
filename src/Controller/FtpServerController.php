@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\FtpServer;
 use App\Form\FtpServerType;
+use App\Service\FtpManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -96,8 +97,41 @@ class FtpServerController extends AbstractController
     {
         $this->getDoctrine()->getManager()->remove($ftpServer);
         $this->getDoctrine()->getManager()->flush();
-        
+
         $this->addFlash('warning', \sprintf('Ftp server "%s" was removed.', $ftpServer->getTitle()));
+
+        return $this->redirectToRoute('ftp_server_list');
+    }
+
+    /**
+     * @Route("/ftp/server/{id}/cache", name="ftp_server_cache_files")
+     *
+     * @param int        $id
+     * @param FtpManager $manager
+     *
+     * @return Response
+     */
+    public function cacheServerFiles(int $id, FtpManager $manager): Response
+    {
+        $filesystem = $manager->get($id);
+        $configurationFiles = [
+            'configuration.json',
+            'entrylist.json',
+            'event.json',
+            'settings.json',
+            'assistRules.json'
+        ];
+        $cached = 0;
+        foreach ($configurationFiles as $file) {
+            if (!$filesystem->has($file)) {
+                continue;
+            }
+
+            $filesystem->read($file);
+            ++$cached;
+        }
+
+        $this->addFlash('warning', \sprintf('%d files was cached.', $cached));
 
         return $this->redirectToRoute('ftp_server_list');
     }
