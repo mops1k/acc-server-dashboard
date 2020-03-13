@@ -11,7 +11,7 @@
 {% block content %}
     <div class="navbar navbar-expand-lg bg-light navbar-light">
         <div class="navbar-collapse justify-content-end">
-            <a href="{{ path('ftp_server_add') }}" class="btn btn-sm btn-primary">ADD NEW</a>
+            <a href="{{ path('ftp_server_add') }}" class="btn btn-sm btn-success">ADD NEW</a>
         </div>
     </div>
     <table class="table">
@@ -21,6 +21,7 @@
             <th scope="col">Name</th>
             <th scope="col">Host or ip</th>
             <th scope="col">Port</th>
+            <th scope="col">Use ssl</th>
             <th scope="col"></th>
         </tr>
         </thead>
@@ -31,7 +32,17 @@
                 <td>{{ server.title }}</td>
                 <td>{{ server.ip }}</td>
                 <td>{{ server.port }}</td>
-                <td><a data-title="Deleting ftp server" href="{{ path('ftp_server_delete', {'id': server.id}) }}" class="delete btn btn-danger btn-sm float-right">DELETE</a></td>
+                <td>
+                    {% set badge_type = server.useSsl ? 'success' : 'danger' %}
+                    {% set badge_text = server.useSsl ? 'YES' : 'NO' %}
+                    <span class="badge badge-{{ badge_type }}">{{ badge_text }}</span>
+                </td>
+                <td>
+                    <div class="btn-group btn-group-sm float-right" role="group" aria-label="Controls">
+                        <a href="{{ path('ftp_server_edit', {'id': server.id}) }}" class="btn btn-primary btn-sm">EDIT</a>
+                        <a data-title="Deleting ftp server" href="{{ path('ftp_server_delete', {'id': server.id}) }}" class="delete btn btn-danger btn-sm">DELETE</a>
+                    </div>
+                </td>
             </tr>
         {% endfor %}
         </tbody>
@@ -41,6 +52,23 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('assets/css/jquery-confirm.min.css') }}">
+    <style>
+        label.required:after {
+            color: crimson;
+            content: " *";
+        }
+        label {
+            font-weight: bold;
+        }
+        form:after {
+            color: chocolate;
+            font-size: 11px;
+            content: 'Fields with * are mandatory';
+        }
+        div.form-group > div > small {
+            font-size: 10px;
+        }
+    </style>
 {% endblock %}
 
 

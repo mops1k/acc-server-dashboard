@@ -55,6 +55,37 @@ class FtpServerController extends AbstractController
     }
 
     /**
+     * @Route("/ftp/server/{id}/edit", name="ftp_server_edit")
+     *
+     * @param FtpServer $ftpServer
+     * @param Request   $request
+     *
+     * @return Response
+     */
+    public function edit(FtpServer $ftpServer, Request $request): Response
+    {
+        $form = $this->createForm(FtpServerType::class, $ftpServer);
+
+        if ($request->isMethod($request::METHOD_POST)) {
+            $form->handleRequest($request);
+            if ($form->isValid()) {
+                $this->getDoctrine()->getManager()->persist($form->getData());
+                $this->getDoctrine()->getManager()->flush();
+
+                $this->addFlash('info', \sprintf('Ftp server "%s" was saved.', $form->getData()->getTitle()));
+
+                return $this->redirectToRoute('ftp_server_list');
+            }
+        }
+
+        return $this->render('ftp_server/edit.html.twig', [
+            'form' => $form->createView(),
+            'breadcrumb' => \sprintf('Edit "%s" ftp server', $ftpServer->getTitle()),
+            'server' => $ftpServer,
+        ]);
+    }
+
+    /**
      * @Route("/ftp/server/{id}/delete", name="ftp_server_delete")
      *
      * @param FtpServer $ftpServer

@@ -46,6 +46,11 @@ class FtpServer
      */
     private $path;
 
+    /**
+     * @ORM\Column(type="boolean", options={"default": false})
+     */
+    private $useSsl;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -119,6 +124,18 @@ class FtpServer
     public function setPath(?string $path): self
     {
         $this->path = $path;
+
+        return $this;
+    }
+
+    public function getUseSsl(): ?bool
+    {
+        return $this->useSsl;
+    }
+
+    public function setUseSsl(bool $useSsl): self
+    {
+        $this->useSsl = $useSsl;
 
         return $this;
     }

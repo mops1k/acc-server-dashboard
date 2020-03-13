@@ -1,0 +1,25 @@
+
+{% extends 'ftp_server/index.html.twig' %}
+{% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}
+
+{% block content %}
+    <div class="navbar navbar-expand-lg bg-light navbar-light mt-2">
+        <div class="navbar-collapse justify-content-start">
+            <h4>Edit "{{ server.title }}" ftp server</h4>
+        </div>
+    </div>
+    <div class="p-4">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <div class="float-right">
+            <button type="submit" class="btn btn-sm btn-success">SAVE</button>
+            <a href="{{ path('ftp_server_list') }}" class="btn btn-sm btn-default">CANCEL</a>
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+
+{% block title %}
+    Dashboard :: Edit "{{ server.title }}" ftp server
+{% endblock %}
+
