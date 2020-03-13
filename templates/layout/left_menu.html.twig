@@ -13,13 +13,14 @@
             </ul>
         </div>
     </li>
+    {% for server in get_servers() %}
     <li class="nav-item">
         <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false"
-           data-target="#manage" aria-controls="manage">ACC Manage</a>
+           data-target="#manage" aria-controls="manage">{{ server.title }}</a>
         <div id="manage" class="collapse">
             <ul class="nav nav-small flex-column">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Assist Rules</a>
+                    <a class="nav-link" href="{{ path('assist_rules', {'id': server.id}) }}">Assist Rules</a>
                     <a class="nav-link" href="#">Entry List</a>
                     <a class="nav-link" href="#">Event</a>
                     <a class="nav-link" href="#">Configuration</a>
@@ -28,4 +29,5 @@
             </ul>
         </div>
     </li>
+    {% endfor %}
 </ul>

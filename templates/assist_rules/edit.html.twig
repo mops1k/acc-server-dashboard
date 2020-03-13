@@ -1,0 +1,47 @@
+{% extends 'dashboard/index.html.twig' %}
+{% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}
+
+{% block title %}Dashboard :: {{ server.title }} :: Edit assistant rules{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li class="breadcrumb-item">{{ server.title }}</li>
+    <li class="breadcrumb-item active">{{ breadcrumb|default('Game assistant rules') }}</li>
+{% endblock %}
+
+{% block content %}
+    <div class="navbar navbar-expand-lg bg-light navbar-light mt-2">
+        <div class="navbar-collapse justify-content-start">
+            <h4>Game assistant rules</h4>
+        </div>
+    </div>
+    <div class="p4">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <div class="float-right">
+            <button type="submit" class="btn btn-sm btn-success">SAVE</button>
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        label.required:after {
+            color: crimson;
+            content: " *";
+        }
+        label {
+            font-weight: bold;
+        }
+        form:after {
+            color: chocolate;
+            font-size: 11px;
+            content: 'Fields with * are mandatory';
+        }
+        div.form-group > div > small {
+            font-size: 10px;
+        }
+    </style>
+{% endblock %}

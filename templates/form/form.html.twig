@@ -1,0 +1,10 @@
+{% block boolean_widget %}
+    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        {% for choice in choices %}
+            <label class="btn btn-primary {% if choice is selectedchoice(value) %} active{% endif %}">
+                <input {{ block('widget_attributes') }} type="radio" value="{{ choice.value }}" {% if choice.attr %}{% with { attr: choice.attr } %}{{ block('attributes') }}
+                            {% endwith %}{% endif %}{% if choice is selectedchoice(value) %} checked="checked"{% endif %}"> {{ choice_translation_domain is same as(false) ? choice.label : choice.label|trans({}, choice_translation_domain) }}
+            </label>
+        {% endfor %}
+    </div>
+{% endblock %}
