@@ -31,9 +31,23 @@
                 <td>{{ server.title }}</td>
                 <td>{{ server.ip }}</td>
                 <td>{{ server.port }}</td>
-                <td><a href="{{ path('ftp_server_delete', {'id': server.id}) }}" class="btn btn-danger btn-sm float-right">DELETE</a></td>
+                <td><a data-title="Deleting ftp server" href="{{ path('ftp_server_delete', {'id': server.id}) }}" class="delete btn btn-danger btn-sm float-right">DELETE</a></td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/css/jquery-confirm.min.css') }}">
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('assets/js/jquery-confirm.min.js') }}"></script>
+    <script type="text/javascript">
+        $('a.delete').confirm();
+    </script>
 {% endblock %}

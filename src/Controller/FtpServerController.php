@@ -42,6 +42,8 @@ class FtpServerController extends AbstractController
                 $this->getDoctrine()->getManager()->persist($form->getData());
                 $this->getDoctrine()->getManager()->flush();
 
+                $this->addFlash('success', \sprintf('Ftp server "%s" was added.', $form->getData()->getTitle()));
+
                 return $this->redirectToRoute('ftp_server_list');
             }
         }
@@ -63,6 +65,8 @@ class FtpServerController extends AbstractController
     {
         $this->getDoctrine()->getManager()->remove($ftpServer);
         $this->getDoctrine()->getManager()->flush();
+        
+        $this->addFlash('warning', \sprintf('Ftp server "%s" was removed.', $ftpServer->getTitle()));
 
         return $this->redirectToRoute('ftp_server_list');
     }

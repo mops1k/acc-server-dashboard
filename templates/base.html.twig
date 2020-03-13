@@ -8,6 +8,7 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Gothic+A1" rel="stylesheet">
         <link href="{{ asset('assets/css/theme.css') }}" rel="stylesheet" type="text/css" media="all"/>
+        <link href="{{ asset('assets/css/toast.min.css') }}" rel="stylesheet" type="text/css" media="all"/>
     {% endblock %}
 </head>
 <body>
@@ -17,6 +18,7 @@
     <script type="text/javascript" src="{{ asset('assets/js/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/popper.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/bootstrap.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/toast.min.js') }}"></script>
 
     <!-- Optional Vendor Scripts (Remove the plugin script here and comment initializer script out of index.js if site does not use that feature) -->
     <script type="text/javascript" src="{{ asset('assets/js/autosize.min.js') }}"></script>
@@ -27,6 +29,20 @@
     <script type="text/javascript" src="{{ asset('assets/js/dropzone.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/list.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/theme.js') }}"></script>
+
+    <!-- Flash messages -->
+    <script type="text/javascript">
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+        $.toast({
+            title: '{{ (label|trans)|upper }}',
+            content: '{{ message }}',
+            type: '{{ label }}',
+            delay: 10000
+        });
+        {% endfor %}
+    {% endfor %}
+    </script>
 {% endblock %}
 </body>
 </html>
