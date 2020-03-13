@@ -5,13 +5,13 @@
 {% block breadcrumb %}
     {{ parent() }}
     <li class="breadcrumb-item"><a href="{{ path('ftp_server_list') }}">Ftp Server</a></li>
-    <li class="breadcrumb-item active">List</li>
+    <li class="breadcrumb-item active">{{ breadcrumb|default('List ftp servers') }}</li>
 {% endblock %}
 
 {% block content %}
     <div class="navbar navbar-expand-lg bg-light navbar-light">
         <div class="navbar-collapse justify-content-end">
-            <a href="#" class="btn btn-sm btn-primary">ADD NEW</a>
+            <a href="{{ path('ftp_server_add') }}" class="btn btn-sm btn-primary">ADD NEW</a>
         </div>
     </div>
     <table class="table">
@@ -19,8 +19,7 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">Name</th>
-            <th scope="col">Host</th>
-            <th scope="col">Ip</th>
+            <th scope="col">Host or ip</th>
             <th scope="col">Port</th>
             <th scope="col"></th>
         </tr>
@@ -30,10 +29,9 @@
             <tr>
                 <th scope="row">{{ server.id }}</th>
                 <td>{{ server.title }}</td>
-                <td>{{ server.host }}</td>
                 <td>{{ server.ip }}</td>
                 <td>{{ server.port }}</td>
-                <td><a href="#" class="btn btn-danger btn-sm">DELETE</a></td>
+                <td><a href="#" class="btn btn-danger btn-sm float-right">DELETE</a></td>
             </tr>
         {% endfor %}
         </tbody>

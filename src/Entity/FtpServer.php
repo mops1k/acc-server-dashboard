@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\FtpServerRepository")
@@ -23,8 +22,7 @@ class FtpServer
     private $title;
 
     /**
-     * @ORM\Column(type="integer", length=255, nullable=true)
-     * @Assert\Ip(normalizer="long2ip")
+     * @ORM\Column(type="string", length=255)
      */
     private $ip;
 
@@ -48,11 +46,6 @@ class FtpServer
      */
     private $path;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $host;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -72,12 +65,12 @@ class FtpServer
 
     public function getIp(): ?string
     {
-        return $this->ip ? null : \long2ip($this->ip);
+        return $this->ip;
     }
 
     public function setIp(string $ip): self
     {
-        $this->ip = \ip2long($ip);
+        $this->ip = $ip;
 
         return $this;
     }
@@ -126,18 +119,6 @@ class FtpServer
     public function setPath(?string $path): self
     {
         $this->path = $path;
-
-        return $this;
-    }
-
-    public function getHost(): ?string
-    {
-        return $this->host;
-    }
-
-    public function setHost(?string $host): self
-    {
-        $this->host = $host;
 
         return $this;
     }
