@@ -11,11 +11,14 @@ abstract class AbstractJsonSerializable implements \JsonSerializable
     /**
      * AbstractJsonSerializable constructor.
      *
-     * @param string $data
+     * @param string|array $data
      */
-    public function __construct(string $data)
+    public function __construct($data)
     {
-        $data = \json_decode($data, true);
+        if (!is_array($data)) {
+            $data = \json_decode($data, true);
+        }
+
         if (null === $data) {
             return;
         }
