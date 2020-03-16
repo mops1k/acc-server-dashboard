@@ -13,7 +13,7 @@ use Symfony\Component\Intl\Exception\ResourceBundleNotFoundException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Translation\Exception\NotFoundResourceException;
 
-class AbstractJsonFileFormController extends AbstractController
+abstract class AbstractJsonFileFormController extends AbstractController
 {
     public const FILENAME = 'assistRules.json';
     public const DTO_CLASS_NAME = AssistRulesDTO::class;
