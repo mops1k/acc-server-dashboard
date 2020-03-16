@@ -18,8 +18,8 @@ class BooleanType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefault('choices', [
-            'ON' => 0,
-            'OFF'  => 1,
+            'OFF' => 0,
+            'ON'  => 1,
         ]);
     }
 
