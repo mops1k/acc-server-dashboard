@@ -8,3 +8,23 @@
         {% endfor %}
     </div>
 {% endblock %}
+
+{%- block custom_range_widget -%}
+    {% set type = type|default('range') %}
+    {%- set required = false -%}
+    <div class="form-group">
+        <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}"{% endif %}"/>
+        <input type="number" class="form-control" id="{{ id }}_value_show">
+    </div>
+    <script type="text/javascript">
+        const range_slider_{{ id }} = document.getElementById("{{ id }}");
+        const output_{{ id }} = document.getElementById("{{ id }}_value_show");
+        output_{{ id }}.value = range_slider_{{ id }}.value;
+        range_slider_{{ id }}.oninput = function() {
+            output_{{ id }}.value = this.value;
+        };
+        output_{{ id }}.oninput = function () {
+            range_slider_{{ id }}.value = this.value;
+        };
+    </script>
+{%- endblock custom_range_widget %}

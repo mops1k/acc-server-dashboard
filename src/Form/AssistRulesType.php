@@ -5,6 +5,7 @@ namespace App\Form;
 use App\DataTransfer\AssistRulesDTO;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\RangeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,7 +14,7 @@ class AssistRulesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('stabilityControlLevelMax', NumberType::class, [
+            ->add('stabilityControlLevelMax', CustomRangeType::class, [
                 'label' => 'Maximum stability control level in %',
                 'label_attr' => [
                     'data-toggle'=>"tooltip",
@@ -38,7 +39,7 @@ Default: 100"
                 'attr' => [
                     'min' => 0,
                     'max' => 100,
-                    'step' => 5
+                    'step' => 5,
                 ],
             ])
             ->add('disableAutosteer', BooleanType::class)

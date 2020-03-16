@@ -16,19 +16,19 @@ class SettingsType extends AbstractType
         $builder
             ->add('serverName')
             ->add('adminPassword', PasswordType::class)
-            ->add('trackMedalsRequirement', NumberType::class, [
+            ->add('trackMedalsRequirement', CustomRangeType::class, [
                 'attr' => [
                     'min' => 0,
                     'max' => 3,
                 ]
             ])
-            ->add('safetyRatingRequirement', NumberType::class, [
+            ->add('safetyRatingRequirement', CustomRangeType::class, [
                 'attr' => [
                     'min' => -1,
                     'max' => 99
                 ]
             ])
-            ->add('racecraftRatingRequirement', NumberType::class , [
+            ->add('racecraftRatingRequirement', CustomRangeType::class , [
                 'attr' => [
                     'min' => -1,
                     'max' => 99
@@ -36,7 +36,7 @@ class SettingsType extends AbstractType
             ])
             ->add('password')
             ->add('spectatorPassword')
-            ->add('maxCarSlots', NumberType::class, [
+            ->add('maxCarSlots', CustomRangeType::class, [
                 'attr' => [
                     'min' => 0,
                     'max' => 50
