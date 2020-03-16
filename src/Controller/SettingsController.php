@@ -6,16 +6,18 @@ use App\DataTransfer\SettingsDTO;
 use App\Entity\FtpServer;
 use App\Form\SettingsType;
 use App\Service\FtpManager;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Intl\Exception\ResourceBundleNotFoundException;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Translation\Exception\NotFoundResourceException;
 
-class SettingsController extends AbstractController
+class SettingsController extends AbstractJsonFileFormController
 {
     public const FILENAME = 'settings.json';
+    public const DTO_CLASS_NAME = SettingsDTO::class;
+    public const FORM_CLASS_NAME = SettingsType::class;
+    public const SUCCESS_MESSAGE = 'Settings saved.';
+    public const TEMPLATE_PATH = 'settings/index.html.twig';
+
     /**
      * @Route("/file/{id<\d+>}/settings", name="settings")
      * @param FtpServer  $ftpServer
@@ -24,37 +26,8 @@ class SettingsController extends AbstractController
      *
      * @return Response
      */
-    public function index(FtpServer $ftpServer, FtpManager $ftpManager, Request $request): Response
+    public function edit(FtpServer $ftpServer, FtpManager $ftpManager, Request $request): Response
     {
-        $filesystem = $ftpManager->get($ftpServer->getId());
-        try {
-            $settingsJson = $filesystem->read(self::FILENAME);
-        } catch (\Throwable $exception) {
-            throw new ResourceBundleNotFoundException('Resource unacceptable.');
-        }
-
-        if (null === $settingsJson) {
-            throw new NotFoundResourceException('No data received.');
-        }
-
-        $model = new SettingsDTO($settingsJson);
-        $form  = $this->createForm(SettingsType::class, $model);
-        if ($request->isMethod($request::METHOD_POST)) {
-            $form->handleRequest($request);
-            if ($form->isValid()) {
-                $filesystem->write(self::FILENAME, \json_encode($model), true);
-
-                $this->addFlash('success', 'Assist rules saved');
-                $this->redirectToRoute('assist_rules', ['id' => $ftpServer->getId()]);
-            }
-        }
-
-        return $this->render(
-            'settings/index.html.twig',
-            [
-                'form'   => $form->createView(),
-                'server' => $ftpServer,
-            ]
-        );
+        return parent::edit($ftpServer, $ftpManager, $request);
     }
 }
