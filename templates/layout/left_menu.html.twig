@@ -3,28 +3,28 @@
         <a class="nav-link" href="{{ path('dashboard') }}">Home</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false"
+        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="true"
            data-target="#settings" aria-controls="settings">Settings</a>
-        <div id="settings" class="collapse">
+        <div id="settings" class="collapse show">
             <ul class="nav nav-small flex-column">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('ftp_server_list') }}">Ftp Servers</a>
+                    <a class="nav-link{{ app.request.attributes.get('_route') == 'ftp_server_list' ? ' active' }}" href="{{ path('ftp_server_list') }}">FTP Servers</a>
                 </li>
             </ul>
         </div>
     </li>
     {% for server in get_servers() %}
     <li class="nav-item">
-        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false"
-           data-target="#manage" aria-controls="manage">{{ server.title }}</a>
-        <div id="manage" class="collapse">
+        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="{{ app.request.attributes.get('_route_params')['id']|default(null) == server.id ? "true" : "false" }}" data-target="#manage" aria-controls="manage">{{ server.title }}</a>
+        <div id="manage" class="collapse{{ app.request.attributes.get('_route_params')['id']|default(null) == server.id ? " show" }}">
             <ul class="nav nav-small flex-column">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('assist_rules', {'id': server.id}) }}">Assist Rules</a>
                     <a class="nav-link" href="#">Entry List</a>
                     <a class="nav-link" href="#">Event</a>
-                    <a class="nav-link" href="{{ path('configuration', {'id': server.id}) }}">Configuration</a>
-                    <a class="nav-link" href="{{ path('settings', {'id': server.id}) }}">Settings</a>
+                    <a class="nav-link" href="#">Event rules</a>
+                    <a class="nav-link{{ app.request.attributes.get('_route') == 'assist_rules' ? ' active' }}" href="{{ path('assist_rules', {'id': server.id}) }}">Assist Rules</a>
+                    <a class="nav-link{{ app.request.attributes.get('_route') == 'configuration' ? ' active' }}" href="{{ path('configuration', {'id': server.id}) }}">Configuration</a>
+                    <a class="nav-link{{ app.request.attributes.get('_route') == 'settings' ? ' active' }}" href="{{ path('settings', {'id': server.id}) }}">Settings</a>
                 </li>
             </ul>
         </div>
