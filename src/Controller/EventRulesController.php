@@ -15,7 +15,7 @@ class EventRulesController extends AbstractJsonFileFormController
     public const FILENAME = 'settings.json';
     public const DTO_CLASS_NAME = EventRulesDTO::class;
     public const FORM_CLASS_NAME = EventRulesType::class;
-    public const SUCCESS_MESSAGE = 'Settings saved.';
+    public const SUCCESS_MESSAGE = 'Event rules saved.';
     public const TEMPLATE_PATH = 'event_rules/index.html.twig';
 
     /**
