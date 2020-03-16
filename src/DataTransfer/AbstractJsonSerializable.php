@@ -6,7 +6,7 @@ namespace App\DataTransfer;
 /**
  * Class AbstractJsonSerializable
  */
-class AbstractJsonSerializable implements \JsonSerializable
+abstract class AbstractJsonSerializable implements \JsonSerializable
 {
     /**
      * AbstractJsonSerializable constructor.
