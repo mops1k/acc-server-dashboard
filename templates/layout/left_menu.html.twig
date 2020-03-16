@@ -2,16 +2,8 @@
     <li class="nav-item">
         <a class="nav-link" href="{{ path('dashboard') }}">Home</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="true"
-           data-target="#settings" aria-controls="settings">Settings</a>
-        <div id="settings" class="collapse show">
-            <ul class="nav nav-small flex-column">
-                <li class="nav-item">
-                    <a class="nav-link{{ app.request.attributes.get('_route') == 'ftp_server_list' ? ' active' }}" href="{{ path('ftp_server_list') }}">FTP Servers</a>
-                </li>
-            </ul>
-        </div>
+    <li class="nav-item nav-small">
+        <a class="nav-link{{ app.request.attributes.get('_route') == 'ftp_server_list' ? ' active' }}" href="{{ path('ftp_server_list') }}">FTP Servers Manage</a>
     </li>
     {% for server in get_servers() %}
     <li class="nav-item">
