@@ -12,7 +12,7 @@
             <ul class="nav nav-small flex-column">
                 <li class="nav-item">
                     <a class="nav-link" href="#">Entry List</a>
-                    <a class="nav-link" href="#">Event</a>
+                    <a class="nav-link" href="{{ path('event', {'id': server.id}) }}">Event</a>
                     <a class="nav-link{{ app.request.attributes.get('_route') == 'event_rules' ? ' active' }}" href="{{ path('event_rules', {'id': server.id}) }}">Event rules</a>
                     <a class="nav-link{{ app.request.attributes.get('_route') == 'assist_rules' ? ' active' }}" href="{{ path('assist_rules', {'id': server.id}) }}">Assist Rules</a>
                     <a class="nav-link{{ app.request.attributes.get('_route') == 'configuration' ? ' active' }}" href="{{ path('configuration', {'id': server.id}) }}">Configuration</a>

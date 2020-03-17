@@ -1,0 +1,100 @@
+{% extends 'assist_rules/edit.html.twig' %}
+{% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}
+
+{% block title %}Dashboard :: {{ server.title }} :: Edit event{% endblock %}
+
+{% block breadcrumb %}
+    <li class="breadcrumb-item">{{ server.title }}</li>
+    <li class="breadcrumb-item active">{{ breadcrumb|default('Game event') }}</li>
+{% endblock %}
+
+{% block content_title %}{% endblock %}
+
+{% block content %}
+    <div class="navbar navbar-expand-lg bg-light navbar-light mt-2">
+        <div class="navbar-collapse justify-content-start">
+            <h4>{{ block('content_title') }}</h4>
+        </div>
+    </div>
+    <div class="p4">
+        {{ form_start(form) }}
+        {{ form_row(form.track) }}
+        {{ form_row(form.preRaceWaitingTimeSeconds) }}
+        {{ form_row(form.sessionOverTimeSeconds) }}
+        {{ form_row(form.ambientTemp) }}
+        {{ form_row(form.trackTemp) }}
+        {{ form_row(form.cloudLevel) }}
+        {{ form_row(form.rain) }}
+        {{ form_row(form.weatherRandomness) }}
+        {{ form_row(form.postQualySeconds) }}
+        {{ form_row(form.postRaceSeconds) }}
+        {{ form_row(form.metaData) }}
+        <div class="form-group row">
+            <div class="row mb-2 col-12">
+                <div class="col-6">
+                    <b>{{ form_label(form.sessions) }}</b>
+                    {{ form_errors(form.sessions) }}
+                </div>
+                <div class="col-6">
+                    <button type="button" id="add_session" class="btn btn-sm btn-primary float-right"
+                       data-target="#{{ form.sessions.vars.id }}_list"
+                       data-prototype="{{ form_widget(form.sessions.vars.prototype)|e('html_attr') }}"
+                       data-next-id="{{ form.sessions|length }}"
+                    >ADD</button>
+                </div>
+            </div>
+            <div class="row col-12" id="{{ form.sessions.vars.id }}_list">
+                {% for session in form.sessions %}
+                    <div  class="row col-12 border rounded m-1 p-2" id="{{ session.vars.id }}">
+                        <div class="col-2">
+                            <button type="button" id="delete_session" class="btn btn-sm btn-danger" data-target="#{{ session.vars.id }}">REMOVE</button>
+                        </div>
+                        <div class="col-10">
+                            {{ form_rest(session) }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+        <div class="float-right">
+            <button type="submit" class="btn btn-sm btn-success">SAVE</button>
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function () {
+            var delete_event = function () {
+                $('button#delete_session').each(function () {
+                    $(this).on('click', function () {
+                        var target = $(this).data('target');
+                        $('div'+target).remove();
+                    })
+                });
+            };
+            delete_event();
+
+            $('button#add_session').on('click', function () {
+                var target = $(this).data('target');
+                var prototype = $(this).data('prototype');
+                var id = parseInt($(this).attr('data-next-id'));
+
+                $(target).append('<div  class="row col-12 border rounded m-1 p-2" id="new_element_'+id+'">\n' +
+                    `                        <div class="col-2">
+                            <button type="button" id="delete_session" class="btn btn-sm btn-danger" data-target="#new_element_${id}">REMOVE</button>
+                        </div>
+                        <div class="col-10">
+${prototype.replace(/__name__/g, id)}
+                        </div>
+                    </div>`);
+                $(this).attr('data-next-id', id + 1);
+
+                delete_event();
+            });
+        });
+    </script>
+{% endblock %}

@@ -28,7 +28,7 @@ abstract class AbstractJsonSerializable implements \JsonSerializable
                 continue;
             }
 
-            $this->{$name} = $value;
+            $this->{'set'.ucfirst($name)}($value);
         }
     }
 

@@ -32,14 +32,13 @@ abstract class AbstractJsonFileFormController extends AbstractController
     public function edit(FtpServer $ftpServer, FtpManager $ftpManager, Request $request): Response
     {
         $filesystem = $ftpManager->get($ftpServer->getId());
+        $jsonString = '';
         try {
-            $jsonString = $filesystem->read(static::FILENAME);
+            if ($filesystem->has(static::FILENAME)) {
+                $jsonString = $filesystem->read(static::FILENAME);
+            }
         } catch (\Throwable $exception) {
             throw new ResourceBundleNotFoundException('Resource unacceptable.');
-        }
-
-        if (null === $jsonString) {
-            throw new NotFoundResourceException('No data received.');
         }
 
         $dtoClassName = static::DTO_CLASS_NAME;
