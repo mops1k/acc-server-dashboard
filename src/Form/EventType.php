@@ -48,8 +48,19 @@ class EventType extends AbstractType
             ->add('ambientTemp')
             ->add('trackTemp')
             ->add('cloudLevel')
-            ->add('rain')
-            ->add('weatherRandomness')
+            ->add('rain', CustomRangeType::class, [
+                'attr' => [
+                    'min' => 0.0,
+                    'max' => 1.0,
+                    'step' => 0.1,
+                ]
+            ])
+            ->add('weatherRandomness', CustomRangeType::class, [
+                'attr' => [
+                    'min' => 0,
+                    'max' => 7,
+                ]
+            ])
             ->add('postQualySeconds')
             ->add('postRaceSeconds')
             ->add('metaData')

@@ -34,9 +34,16 @@ class SessionType extends AbstractType
                     ],
                 ]
             )
-            ->add('timeMultiplier', IntegerType::class, [
-                'attr' => ['min' => 1],
-            ])
+            ->add(
+                'timeMultiplier',
+                CustomRangeType::class,
+                [
+                    'attr' => [
+                        'min' => 0,
+                        'max' => 24,
+                    ],
+                ]
+            )
             ->add(
                 'sessionType',
                 BooleanType::class,
@@ -48,9 +55,13 @@ class SessionType extends AbstractType
                     ],
                 ]
             )
-            ->add('sessionDurationMinutes', IntegerType::class, [
-                'attr' => ['min' => 1],
-            ]);
+            ->add(
+                'sessionDurationMinutes',
+                IntegerType::class,
+                [
+                    'attr' => ['min' => 1],
+                ]
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver)
