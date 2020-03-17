@@ -10,16 +10,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Intl\Exception\ResourceBundleNotFoundException;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Translation\Exception\NotFoundResourceException;
 
 abstract class AbstractJsonFileFormController extends AbstractController
 {
-    public const FILENAME = 'assistRules.json';
-    public const DTO_CLASS_NAME = AssistRulesDTO::class;
+    public const FILENAME        = 'assistRules.json';
+    public const DTO_CLASS_NAME  = AssistRulesDTO::class;
     public const FORM_CLASS_NAME = AssistRulesType::class;
     public const SUCCESS_MESSAGE = 'Assist rules saved';
-    public const TEMPLATE_PATH = 'assist_rules/edit.html.twig';
+    public const TEMPLATE_PATH   = 'assist_rules/edit.html.twig';
 
     /**
      * @param FtpServer  $ftpServer
@@ -42,8 +40,8 @@ abstract class AbstractJsonFileFormController extends AbstractController
         }
 
         $dtoClassName = static::DTO_CLASS_NAME;
-        $model = new $dtoClassName($jsonString);
-        $form  = $this->createForm(static::FORM_CLASS_NAME, $model);
+        $model        = new $dtoClassName($jsonString);
+        $form         = $this->createForm(static::FORM_CLASS_NAME, $model);
         if ($request->isMethod($request::METHOD_POST)) {
             $form->handleRequest($request);
             if ($form->isValid()) {
