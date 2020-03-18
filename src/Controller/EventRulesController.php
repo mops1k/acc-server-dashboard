@@ -19,7 +19,7 @@ class EventRulesController extends AbstractJsonFileFormController
     public const TEMPLATE_PATH = 'event_rules/index.html.twig';
 
     /**
-     * @Route("/file/{id<\d+>}/event/rules", name="event_rules")
+     * @Route("/dashboard/file/{id<\d+>}/event/rules", name="event_rules")
      * @param FtpServer  $ftpServer
      * @param FtpManager $ftpManager
      * @param Request    $request

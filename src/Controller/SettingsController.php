@@ -19,7 +19,7 @@ class SettingsController extends AbstractJsonFileFormController
     public const TEMPLATE_PATH = 'settings/index.html.twig';
 
     /**
-     * @Route("/file/{id<\d+>}/settings", name="settings")
+     * @Route("/dashboard/file/{id<\d+>}/settings", name="settings")
      * @param FtpServer  $ftpServer
      * @param FtpManager $ftpManager
      * @param Request    $request

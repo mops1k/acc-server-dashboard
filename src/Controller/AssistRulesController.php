@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AssistRulesController extends AbstractJsonFileFormController
 {
     /**
-     * @Route("/file/{id<\d+>}/assist/rules", name="assist_rules")
+     * @Route("/dashboard/file/{id<\d+>}/assist/rules", name="assist_rules")
      *
      * @inheritDoc
      */

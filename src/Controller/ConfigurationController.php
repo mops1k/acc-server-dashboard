@@ -19,7 +19,7 @@ class ConfigurationController extends AbstractJsonFileFormController
     public const SUCCESS_MESSAGE = 'Configuration saved.';
 
     /**
-     * @Route("/file/{id}/configuration/", name="configuration")
+     * @Route("/dashboard/file/{id}/configuration/", name="configuration")
      *
      * @inheritDoc
      */

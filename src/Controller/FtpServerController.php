@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class FtpServerController extends AbstractController
 {
     /**
-     * @Route("/ftp/server/list", name="ftp_server_list")
+     * @Route("/dashboard/ftp/server/list", name="ftp_server_list")
      */
     public function index(): Response
     {
@@ -27,7 +27,7 @@ class FtpServerController extends AbstractController
     }
 
     /**
-     * @Route("/ftp/server/add", name="ftp_server_add")
+     * @Route("/dashboard/ftp/server/add", name="ftp_server_add")
      *
      * @param Request $request
      *
@@ -56,7 +56,7 @@ class FtpServerController extends AbstractController
     }
 
     /**
-     * @Route("/ftp/server/{id}/edit", name="ftp_server_edit")
+     * @Route("/dashboard/ftp/server/{id}/edit", name="ftp_server_edit")
      *
      * @param FtpServer $ftpServer
      * @param Request   $request
@@ -87,7 +87,7 @@ class FtpServerController extends AbstractController
     }
 
     /**
-     * @Route("/ftp/server/{id}/delete", name="ftp_server_delete")
+     * @Route("/dashboard/ftp/server/{id}/delete", name="ftp_server_delete")
      *
      * @param FtpServer $ftpServer
      *
@@ -104,7 +104,7 @@ class FtpServerController extends AbstractController
     }
 
     /**
-     * @Route("/ftp/server/{id}/cache", name="ftp_server_cache_files")
+     * @Route("/dashboard/ftp/server/{id}/cache", name="ftp_server_cache_files")
      *
      * @param int        $id
      * @param FtpManager $manager

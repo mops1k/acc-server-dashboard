@@ -20,7 +20,7 @@ class EventController extends AbstractJsonFileFormController
     public const SUCCESS_MESSAGE = 'Event saved.';
 
     /**
-     * @Route("/file/{id}/event/", name="event")
+     * @Route("/dashboard/file/{id}/event/", name="event")
      *
      * @inheritDoc
      */
