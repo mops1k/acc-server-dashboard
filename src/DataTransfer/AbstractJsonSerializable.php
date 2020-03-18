@@ -28,7 +28,12 @@ abstract class AbstractJsonSerializable implements \JsonSerializable
                 continue;
             }
 
-            $this->{'set'.ucfirst($name)}($value);
+            if (is_array($value)) {
+                $this->{'set'.ucfirst($name)}($value);
+                continue;
+            }
+
+            $this->$name = $value;
         }
     }
 
@@ -45,7 +50,7 @@ abstract class AbstractJsonSerializable implements \JsonSerializable
         foreach ($reflectionClass->getProperties(\ReflectionProperty::IS_PROTECTED) as $property) {
             $name          = $property->getName();
             if (null !== $this->{$name}) {
-                $result[$name] = $this->{$name};
+                $result[$name] = $this->{'get'.ucfirst($name)}();
             }
         }
 

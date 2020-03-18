@@ -17,7 +17,7 @@ class SessionDTO extends AbstractJsonSerializable
     /**
      * @return mixed
      */
-    public function getHourOfDay()
+    public function getHourOfDay(): int
     {
         return $this->hourOfDay;
     }
@@ -27,7 +27,7 @@ class SessionDTO extends AbstractJsonSerializable
      *
      * @return SessionDTO
      */
-    public function setHourOfDay($hourOfDay)
+    public function setHourOfDay(int $hourOfDay)
     {
         $this->hourOfDay = $hourOfDay;
 
@@ -37,7 +37,7 @@ class SessionDTO extends AbstractJsonSerializable
     /**
      * @return mixed
      */
-    public function getDayOfWeekend()
+    public function getDayOfWeekend(): int
     {
         return $this->dayOfWeekend;
     }
@@ -47,7 +47,7 @@ class SessionDTO extends AbstractJsonSerializable
      *
      * @return SessionDTO
      */
-    public function setDayOfWeekend($dayOfWeekend)
+    public function setDayOfWeekend(int $dayOfWeekend)
     {
         $this->dayOfWeekend = $dayOfWeekend;
 
@@ -57,7 +57,7 @@ class SessionDTO extends AbstractJsonSerializable
     /**
      * @return mixed
      */
-    public function getTimeMultiplier()
+    public function getTimeMultiplier(): int
     {
         return $this->timeMultiplier;
     }
@@ -67,7 +67,7 @@ class SessionDTO extends AbstractJsonSerializable
      *
      * @return SessionDTO
      */
-    public function setTimeMultiplier($timeMultiplier)
+    public function setTimeMultiplier(int $timeMultiplier)
     {
         $this->timeMultiplier = $timeMultiplier;
 
@@ -87,7 +87,7 @@ class SessionDTO extends AbstractJsonSerializable
      *
      * @return SessionDTO
      */
-    public function setSessionType($sessionType)
+    public function setSessionType(string $sessionType)
     {
         $this->sessionType = $sessionType;
 
@@ -97,7 +97,7 @@ class SessionDTO extends AbstractJsonSerializable
     /**
      * @return mixed
      */
-    public function getSessionDurationMinutes()
+    public function getSessionDurationMinutes(): int
     {
         return $this->sessionDurationMinutes;
     }
@@ -107,7 +107,7 @@ class SessionDTO extends AbstractJsonSerializable
      *
      * @return SessionDTO
      */
-    public function setSessionDurationMinutes($sessionDurationMinutes)
+    public function setSessionDurationMinutes(int $sessionDurationMinutes)
     {
         $this->sessionDurationMinutes = $sessionDurationMinutes;
 

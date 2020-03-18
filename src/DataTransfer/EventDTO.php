@@ -51,7 +51,7 @@ class EventDTO extends AbstractJsonSerializable
     /**
      * @return mixed
      */
-    public function getPreRaceWaitingTimeSeconds()
+    public function getPreRaceWaitingTimeSeconds(): int
     {
         return $this->preRaceWaitingTimeSeconds;
     }
@@ -61,7 +61,7 @@ class EventDTO extends AbstractJsonSerializable
      *
      * @return EventDTO
      */
-    public function setPreRaceWaitingTimeSeconds($preRaceWaitingTimeSeconds)
+    public function setPreRaceWaitingTimeSeconds(int $preRaceWaitingTimeSeconds)
     {
         $this->preRaceWaitingTimeSeconds = $preRaceWaitingTimeSeconds;
 
@@ -71,7 +71,7 @@ class EventDTO extends AbstractJsonSerializable
     /**
      * @return mixed
      */
-    public function getSessionOverTimeSeconds()
+    public function getSessionOverTimeSeconds(): int
     {
         return $this->sessionOverTimeSeconds;
     }
@@ -81,7 +81,7 @@ class EventDTO extends AbstractJsonSerializable
      *
      * @return EventDTO
      */
-    public function setSessionOverTimeSeconds($sessionOverTimeSeconds)
+    public function setSessionOverTimeSeconds(int $sessionOverTimeSeconds)
     {
         $this->sessionOverTimeSeconds = $sessionOverTimeSeconds;
 
@@ -91,7 +91,7 @@ class EventDTO extends AbstractJsonSerializable
     /**
      * @return mixed
      */
-    public function getAmbientTemp()
+    public function getAmbientTemp(): int
     {
         return $this->ambientTemp;
     }
@@ -101,7 +101,7 @@ class EventDTO extends AbstractJsonSerializable
      *
      * @return EventDTO
      */
-    public function setAmbientTemp($ambientTemp)
+    public function setAmbientTemp(int $ambientTemp)
     {
         $this->ambientTemp = $ambientTemp;
 
@@ -111,7 +111,7 @@ class EventDTO extends AbstractJsonSerializable
     /**
      * @return mixed
      */
-    public function getTrackTemp()
+    public function getTrackTemp(): int
     {
         return $this->trackTemp;
     }
@@ -121,7 +121,7 @@ class EventDTO extends AbstractJsonSerializable
      *
      * @return EventDTO
      */
-    public function setTrackTemp($trackTemp)
+    public function setTrackTemp(int $trackTemp)
     {
         $this->trackTemp = $trackTemp;
 
@@ -131,7 +131,7 @@ class EventDTO extends AbstractJsonSerializable
     /**
      * @return mixed
      */
-    public function getCloudLevel()
+    public function getCloudLevel(): float
     {
         return $this->cloudLevel;
     }
@@ -141,7 +141,7 @@ class EventDTO extends AbstractJsonSerializable
      *
      * @return EventDTO
      */
-    public function setCloudLevel($cloudLevel)
+    public function setCloudLevel(float $cloudLevel)
     {
         $this->cloudLevel = $cloudLevel;
 
@@ -151,7 +151,7 @@ class EventDTO extends AbstractJsonSerializable
     /**
      * @return mixed
      */
-    public function getRain()
+    public function getRain(): float
     {
         return $this->rain;
     }
@@ -161,7 +161,7 @@ class EventDTO extends AbstractJsonSerializable
      *
      * @return EventDTO
      */
-    public function setRain($rain)
+    public function setRain(float $rain)
     {
         $this->rain = $rain;
 
@@ -171,7 +171,7 @@ class EventDTO extends AbstractJsonSerializable
     /**
      * @return mixed
      */
-    public function getWeatherRandomness()
+    public function getWeatherRandomness(): int
     {
         return $this->weatherRandomness;
     }
@@ -181,7 +181,7 @@ class EventDTO extends AbstractJsonSerializable
      *
      * @return EventDTO
      */
-    public function setWeatherRandomness($weatherRandomness)
+    public function setWeatherRandomness(int $weatherRandomness)
     {
         $this->weatherRandomness = $weatherRandomness;
 
@@ -191,7 +191,7 @@ class EventDTO extends AbstractJsonSerializable
     /**
      * @return mixed
      */
-    public function getPostQualySeconds()
+    public function getPostQualySeconds(): ?int
     {
         return $this->postQualySeconds;
     }
@@ -201,7 +201,7 @@ class EventDTO extends AbstractJsonSerializable
      *
      * @return EventDTO
      */
-    public function setPostQualySeconds($postQualySeconds)
+    public function setPostQualySeconds(?int $postQualySeconds)
     {
         $this->postQualySeconds = $postQualySeconds;
 
@@ -211,7 +211,7 @@ class EventDTO extends AbstractJsonSerializable
     /**
      * @return mixed
      */
-    public function getPostRaceSeconds()
+    public function getPostRaceSeconds(): ?int
     {
         return $this->postRaceSeconds;
     }
@@ -221,7 +221,7 @@ class EventDTO extends AbstractJsonSerializable
      *
      * @return EventDTO
      */
-    public function setPostRaceSeconds($postRaceSeconds)
+    public function setPostRaceSeconds(?int $postRaceSeconds)
     {
         $this->postRaceSeconds = $postRaceSeconds;
 
@@ -231,7 +231,7 @@ class EventDTO extends AbstractJsonSerializable
     /**
      * @return mixed
      */
-    public function getMetaData()
+    public function getMetaData(): ?string
     {
         return $this->metaData;
     }
@@ -241,7 +241,7 @@ class EventDTO extends AbstractJsonSerializable
      *
      * @return EventDTO
      */
-    public function setMetaData($metaData)
+    public function setMetaData(?string $metaData)
     {
         $this->metaData = $metaData;
 
