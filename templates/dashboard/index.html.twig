@@ -37,15 +37,22 @@
             <div class="container">
                 {% block content %}
                     <div class="row justify-content-center">
-                        <div class="col-lg-11 col-xl-9">
-                            <div class="text-center d-flex align-items-center justify-content-center pt-5">
-                                <div>
-                                    <img alt="Empty State" src="{{ asset('assets/img/empty-state.svg') }}" class="w-50"
-                                         style="opacity:.8"/>
-                                    <span class="h3 d-block mt-3">Content Here</span>
-                                    <p>
-                                        Add your page content here
-                                    </p>
+                        <div class="col-11 mt-4">
+                            <div class="content-list-body row">
+                                <div class="col-md-6">
+                                    <div class="card card-team">
+                                        {% for server in get_servers() %}
+                                        <div class="card-body">
+                                            <div class="card-title">
+                                                <a href="nav-side-user.html#">
+                                                    <h5 data-filter-by="text" class="H5-filter-by-text">{{ server.title }}</h5>
+                                                </a>
+                                                <span>{{ server.ip ~ ':' ~ server.port }}, ssl is {{ server.useSsl ? 'on' : 'off' }}</span>
+                                            </div>
+                                                <a href="{{ path('ftp_server_edit', {'id': server.id}) }}" class="btn btn-sm btn-primary float-right">EDIT</a>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
                                 </div>
                             </div>
                         </div>
