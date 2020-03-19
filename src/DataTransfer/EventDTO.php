@@ -263,6 +263,7 @@ class EventDTO extends AbstractJsonSerializable
      */
     public function setSessions(array $sessions): EventDTO
     {
+        $this->sessions = [];
         foreach ($sessions as $session) {
             $this->sessions[] = new SessionDTO($session);
         }
