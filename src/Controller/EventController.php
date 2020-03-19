@@ -6,7 +6,6 @@ use App\DataTransfer\EventDTO;
 use App\Entity\FtpServer;
 use App\Form\EventType;
 use App\Service\FtpManager;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
