@@ -31,7 +31,9 @@
     },
     "require-dev": {
         "roave/security-advisories": "dev-master",
-        "symfony/maker-bundle": "^1.14"
+        "symfony/debug-pack": "^1.0",
+        "symfony/maker-bundle": "^1.14",
+        "symfony/var-dumper": "5.0.*"
     },
     "config": {
         "preferred-install": {

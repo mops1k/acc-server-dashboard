@@ -1,6 +1,67 @@
 {% extends 'assist_rules/edit.html.twig' %}
 {% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}
 
+{% macro driver_prototype(form) %}
+    <tr>
+        {% for item in form %}
+            <td>{{ form_widget(item) }}</td>
+            {% if loop.last %}
+                <td>
+                    <button type="button" id="delete_driver" class="btn btn-sm btn-danger">REMOVE</button>
+                </td>{% endif %}
+        {% endfor %}
+    </tr>
+{% endmacro %}
+
+{% macro entry_prototype(entry) %}
+        <div class="col-10">
+            <div class="row">
+                <div class="col-6">
+                    <b>{{ form_label(entry.drivers) }}</b>
+                    {{ form_errors(entry.drivers) }}
+                </div>
+                <div class="col-6">
+                    {% set prototype = entry.drivers.vars.prototype %}
+                    <button type="button" id="add_driver" class="btn btn-sm btn-primary float-right"
+                            data-target="#{{ entry.drivers.vars.id }}_list"
+                            data-prototype="{{ _self.driver_prototype(prototype)|e('html_attr') }}"
+                            data-next-id="{{ entry.drivers|length }}"
+                    >ADD DRIVER
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <table class="table table-responsive">
+                    <thead>
+                    <tr class="thead-light">
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Short Name</th>
+                        <th>Category</th>
+                        <th>SteamID64</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody id="{{ entry.drivers.vars.id }}_list">
+                    {% for driver in entry.drivers %}
+                        <tr>
+                            <td>{{ form_widget(driver.firstName) }}</td>
+                            <td>{{ form_widget(driver.lastName) }}</td>
+                            <td>{{ form_widget(driver.shortName) }}</td>
+                            <td>{{ form_widget(driver.driverCategory) }}</td>
+                            <td>{{ form_widget(driver.playerID) }}</td>
+                            <td>
+                                <button type="button" id="delete_driver" class="btn btn-sm btn-danger">REMOVE</button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {{ form_rest(entry) }}
+        </div>
+{% endmacro %}
+
 {% block title %}Dashboard :: {{ server.title }} :: Edit entry list{% endblock %}
 
 {% block breadcrumb %}
@@ -9,3 +70,156 @@
 {% endblock %}
 
 {% block content_title %}Game settings{% endblock %}
+
+{% block content %}
+    <div class="navbar navbar-expand-lg bg-light navbar-light mt-2">
+        <div class="navbar-collapse justify-content-start">
+            <h4>{{ block('content_title') }}</h4>
+        </div>
+    </div>
+    <div class="p4">
+        {{ form_start(form) }}
+        {{ form_row(form.forceEntryList) }}
+        <div class="form-group row border-top pt-2">
+            <div class="row mb-2 col-12">
+                <div class="col-6">
+                    <b>{{ form_label(form.entries) }}</b>
+                    {{ form_errors(form.entries) }}
+                </div>
+                <div class="col-6">
+                    <button type="button" id="add_entry" class="btn btn-sm btn-primary float-right"
+                            data-target="#{{ form.entries.vars.id }}_list"
+                            data-prototype="{{ _self.entry_prototype(form.entries.vars.prototype)|e('html_attr') }}"
+                            data-next-id="{{ form.entries|length }}"
+                    >ADD
+                    </button>
+                </div>
+            </div>
+            <div class="row col-12" id="{{ form.entries.vars.id }}_list">
+                {% for entry in form.entries %}
+                    <div class="row col-12 border rounded m-1 p-2" id="{{ entry.vars.id }}">
+                        <div class="col-2">
+                            <button type="button" id="delete_entry" class="btn btn-sm btn-danger"
+                                    data-target="#{{ entry.vars.id }}">REMOVE
+                            </button>
+                        </div>
+                        <div class="col-10">
+                            <div class="row">
+                                <div class="col-6">
+                                    <b>{{ form_label(entry.drivers) }}</b>
+                                    {{ form_errors(entry.drivers) }}
+                                </div>
+                                <div class="col-6">
+                                    {% set prototype = entry.drivers.vars.prototype %}
+                                    <button type="button" id="add_driver" class="btn btn-sm btn-primary float-right"
+                                            data-target="#{{ entry.drivers.vars.id }}_list"
+                                            data-prototype="{{ _self.driver_prototype(prototype)|e('html_attr') }}"
+                                            data-next-id="{{ entry.drivers|length }}"
+                                    >ADD DRIVER
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <table class="table table-responsive">
+                                    <thead>
+                                    <tr class="thead-light">
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Short Name</th>
+                                        <th>Category</th>
+                                        <th>SteamID64</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="{{ entry.drivers.vars.id }}_list">
+                                    {% for driver in entry.drivers %}
+                                        <tr>
+                                            <td>{{ form_widget(driver.firstName) }}</td>
+                                            <td>{{ form_widget(driver.lastName) }}</td>
+                                            <td>{{ form_widget(driver.shortName) }}</td>
+                                            <td>{{ form_widget(driver.driverCategory) }}</td>
+                                            <td>{{ form_widget(driver.playerID) }}</td>
+                                            <td>
+                                                <button type="button" id="delete_driver" class="btn btn-sm btn-danger">
+                                                    REMOVE
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            {{ form_rest(entry) }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+        <div class="float-right">
+            <button type="submit" class="btn btn-sm btn-success">SAVE</button>
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function () {
+            const delete_driver = function () {
+                $('button#delete_driver').each(function () {
+                    $(this).on('click', function () {
+                        $(this).parent().parent().remove();
+                    })
+                });
+            };
+
+            const delete_entry = function () {
+                $('button#delete_entry').each(function () {
+                    $(this).on('click', function () {
+                        $(this).parent().parent().remove();
+                    })
+                });
+            };
+
+            const add_driver = function (target) {
+                if (target) {
+                    object = $('div'+target).find('button#add_driver');
+                } else {
+                    object = $('button#add_driver');
+                }
+                console.log(target);
+                object.on('click', function () {
+                    const target = $(this).data('target');
+                    const prototype = $(this).data('prototype');
+                    let index = parseInt($(this).attr('data-next-id'));
+
+                    $(target).append(prototype.replace(/__drivers_name__/g, index));
+                    delete_driver();
+                    $(this).attr('data-next-id', index + 1);
+                });
+            };
+
+            delete_entry();
+            delete_driver();
+            add_driver();
+
+            $('button#add_entry').on('click', function () {
+                var target = $(this).data('target');
+                var prototype = $(this).data('prototype');
+                var id = parseInt($(this).attr('data-next-id'));
+
+                $(target).append('<div  class="row col-12 border rounded m-1 p-2" id="new_element_' + id + '">\n' +
+                    `                        <div class="col-2">
+                            <button type="button" id="delete_entry" class="btn btn-sm btn-danger">REMOVE</button>
+                        </div>
+${prototype.replace(/__name__/g, id)}
+                    </div>`);
+                $(this).attr('data-next-id', id + 1);
+                delete_entry();
+                add_driver('#new_element_' + id + '>div');
+            });
+        });
+    </script>
+{% endblock %}

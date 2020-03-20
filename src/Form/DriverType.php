@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\DataTransfer\DriverDTO;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -18,7 +19,7 @@ class DriverType extends AbstractType
             ->add('shortName')
             ->add(
                 'driverCategory',
-                BooleanType::class,
+                ChoiceType::class,
                 [
                     'choices' => [
                         'Overall'  => 0,

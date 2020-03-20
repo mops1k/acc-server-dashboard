@@ -31,43 +31,58 @@ class EntryType extends AbstractType
                 'drivers',
                 CollectionType::class,
                 [
-                    'entry_type'   => DriverType::class,
-                    'allow_add'    => true,
-                    'allow_delete' => true,
-                    'entry_options' => [
+                    'entry_type'     => DriverType::class,
+                    'allow_add'      => true,
+                    'allow_delete'   => true,
+                    'prototype_name' => '__drivers_name__',
+                    'entry_options'  => [
                         'label' => false,
                     ],
                 ]
             )
             ->add('raceNumber')
-            ->add('forcedCarModel', ChoiceType::class, [
-                'choice_loader' => new CallbackChoiceLoader(function () {
-                    $result = ['none' => -1];
-                    $cars = $this->carRepository->findBy([], ['name' => Criteria::ASC]);
-                    foreach ($cars as $car) {
-                        $result[$car->getName()] = $car->getGameId();
-                    }
+            ->add(
+                'forcedCarModel',
+                ChoiceType::class,
+                [
+                    'choice_loader' => new CallbackChoiceLoader(
+                        function () {
+                            $result = ['none' => -1];
+                            $cars   = $this->carRepository->findBy([], ['name' => Criteria::ASC]);
+                            foreach ($cars as $car) {
+                                $result[$car->getName()] = $car->getGameId();
+                            }
 
-                    return $result;
-                })
-            ])
+                            return $result;
+                        }
+                    ),
+                ]
+            )
             ->add('overrideDriverInfo', BooleanType::class)
             ->add('customCar')
             ->add('overrideCarModelForCustomCar', BooleanType::class)
             ->add('isServerAdmin', BooleanType::class)
             ->add('defaultGridPosition')
-            ->add('ballastKg', CustomRangeType::class, [
-                'attr' => [
-                    'min' => 0,
-                    'max' => 100,
+            ->add(
+                'ballastKg',
+                CustomRangeType::class,
+                [
+                    'attr' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
                 ]
-            ])
-            ->add('restrictor', CustomRangeType::class, [
-                'attr' => [
-                    'min' => 0,
-                    'max' => 20,
+            )
+            ->add(
+                'restrictor',
+                CustomRangeType::class,
+                [
+                    'attr' => [
+                        'min' => 0,
+                        'max' => 20,
+                    ],
                 ]
-            ]);
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver)
