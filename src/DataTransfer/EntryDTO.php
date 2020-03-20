@@ -19,8 +19,8 @@ class EntryDTO extends AbstractJsonSerializable
     protected int $overrideCarModelForCustomCar = 0;
     protected int $isServerAdmin = 0;
     protected ?int $defaultGridPosition = null;
-    protected ?int $ballastKg = null;
-    protected ?int $restrictor = null;
+    protected int $ballastKg = 0;
+    protected int $restrictor = 0;
 
     /**
      * @return DriverDTO[]
