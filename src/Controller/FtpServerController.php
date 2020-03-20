@@ -118,6 +118,7 @@ class FtpServerController extends AbstractController
             'configuration.json',
             'entrylist.json',
             'event.json',
+            'eventRules.json',
             'settings.json',
             'assistRules.json'
         ];
