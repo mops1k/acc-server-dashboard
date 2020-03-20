@@ -31,7 +31,7 @@
                 </div>
             </div>
             <div class="row">
-                <table class="table table-responsive">
+                <table class="table">
                     <thead>
                     <tr class="thead-light">
                         <th>First Name</th>
@@ -44,16 +44,7 @@
                     </thead>
                     <tbody id="{{ entry.drivers.vars.id }}_list">
                     {% for driver in entry.drivers %}
-                        <tr>
-                            <td>{{ form_widget(driver.firstName) }}</td>
-                            <td>{{ form_widget(driver.lastName) }}</td>
-                            <td>{{ form_widget(driver.shortName) }}</td>
-                            <td>{{ form_widget(driver.driverCategory) }}</td>
-                            <td>{{ form_widget(driver.playerID) }}</td>
-                            <td>
-                                <button type="button" id="delete_driver" class="btn btn-sm btn-danger">REMOVE</button>
-                            </td>
-                        </tr>
+                        {{ _self.driver_prototype(driver) }}
                     {% endfor %}
                     </tbody>
                 </table>
@@ -99,58 +90,10 @@
                 {% for entry in form.entries %}
                     <div class="row col-12 border rounded m-1 p-2" id="{{ entry.vars.id }}">
                         <div class="col-2">
-                            <button type="button" id="delete_entry" class="btn btn-sm btn-danger"
-                                    data-target="#{{ entry.vars.id }}">REMOVE
+                            <button type="button" id="delete_entry" class="btn btn-sm btn-danger">REMOVE
                             </button>
                         </div>
-                        <div class="col-10">
-                            <div class="row">
-                                <div class="col-6">
-                                    <b>{{ form_label(entry.drivers) }}</b>
-                                    {{ form_errors(entry.drivers) }}
-                                </div>
-                                <div class="col-6">
-                                    {% set prototype = entry.drivers.vars.prototype %}
-                                    <button type="button" id="add_driver" class="btn btn-sm btn-primary float-right"
-                                            data-target="#{{ entry.drivers.vars.id }}_list"
-                                            data-prototype="{{ _self.driver_prototype(prototype)|e('html_attr') }}"
-                                            data-next-id="{{ entry.drivers|length }}"
-                                    >ADD DRIVER
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <table class="table table-responsive">
-                                    <thead>
-                                    <tr class="thead-light">
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Short Name</th>
-                                        <th>Category</th>
-                                        <th>SteamID64</th>
-                                        <th></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody id="{{ entry.drivers.vars.id }}_list">
-                                    {% for driver in entry.drivers %}
-                                        <tr>
-                                            <td>{{ form_widget(driver.firstName) }}</td>
-                                            <td>{{ form_widget(driver.lastName) }}</td>
-                                            <td>{{ form_widget(driver.shortName) }}</td>
-                                            <td>{{ form_widget(driver.driverCategory) }}</td>
-                                            <td>{{ form_widget(driver.playerID) }}</td>
-                                            <td>
-                                                <button type="button" id="delete_driver" class="btn btn-sm btn-danger">
-                                                    REMOVE
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    {% endfor %}
-                                    </tbody>
-                                </table>
-                            </div>
-                            {{ form_rest(entry) }}
-                        </div>
+                        {{ _self.entry_prototype(entry) }}
                     </div>
                 {% endfor %}
             </div>

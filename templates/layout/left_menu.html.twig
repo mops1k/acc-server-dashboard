@@ -14,7 +14,7 @@
                     <a class="nav-link{{ app.request.attributes.get('_route') == 'event' ? ' active' }}" href="{{ path('event', {'id': server.id}) }}">Event</a>
                     <a class="nav-link{{ app.request.attributes.get('_route') == 'event_rules' ? ' active' }}" href="{{ path('event_rules', {'id': server.id}) }}">Event rules</a>
                     <a class="nav-link{{ app.request.attributes.get('_route') == 'assist_rules' ? ' active' }}" href="{{ path('assist_rules', {'id': server.id}) }}">Assist Rules</a>
-                    <a class="nav-link{{ app.request.attributes.get('_route') == 'entry_list' ? ' active' }}" href="{{ path('entry_list', {'id': server.id}) }}">[WIP] Entry list</a>
+                    <a class="nav-link{{ app.request.attributes.get('_route') == 'entry_list' ? ' active' }}" href="{{ path('entry_list', {'id': server.id}) }}">Entry list</a>
                     <a class="nav-link{{ app.request.attributes.get('_route') == 'configuration' ? ' active' }}" href="{{ path('configuration', {'id': server.id}) }}">Configuration</a>
                     <a class="nav-link{{ app.request.attributes.get('_route') == 'settings' ? ' active' }}" href="{{ path('settings', {'id': server.id}) }}">Settings</a>
                 </li>
